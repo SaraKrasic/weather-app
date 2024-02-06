@@ -1,8 +1,8 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { MenuItem, Select } from "@mui/material";
-import { getCountries } from "./services/LocationService";
-import { Country } from "./model/Country";
+import { getCountries } from "../services/LocationService";
+import { Country } from "../model/Country";
 
 const WeatherCard = () => {
   const [countries, setCountries] = useState<Country[]>([]);
@@ -18,7 +18,10 @@ const WeatherCard = () => {
     <div className="container">
       <div className="inputDiv">
         <div className="inlineDiv">
-          <img src={require("./images/sun-cloud.png")} alt="weather img"></img>
+          <img
+            src={require(".././images/sun-cloud.png")}
+            alt="weather img"
+          ></img>
           <Select
             className="countrieSelect"
             defaultValue="NL"
