@@ -24,15 +24,16 @@ const WeatherCard = () => {
           ></img>
           <Select
             className="countrieSelect"
-            defaultValue="NL"
-            //value={a}
+            defaultValue={countries.find((country) => {
+              return country.name.common === "Netherlands";
+            })}
             label="Countrie"
             //onChange={}
           >
             {countries.length > 0 ? (
               <ul>
-                {countries.map((country) => (
-                  <MenuItem>
+                {countries.map((country, index) => (
+                  <MenuItem key={index}>
                     <div className="flag">{country.flag}</div>
                     {country.name.common}
                   </MenuItem>
