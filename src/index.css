@@ -1,7 +1,6 @@
 body {
   width: 100%;
   height: 100%;
-  display: block;
   line-height: 154%;
   margin: 0;
   background: linear-gradient(
@@ -24,14 +23,16 @@ body {
 .inputDiv {
   background: white;
   border-radius: 25px;
-  box-shadow: 1px 1px 1px 1px lightgray;
+  box-shadow: 2px 2x 2px 2px lightgray;
   padding: 30px;
   width: 600px;
   height: auto;
 }
 
-.inlineDiv img {
-  height: 50px;
+.inlineDiv {
+  height: 40px;
+  display: flex;
+  align-items: center;
 }
 
 .countrieSelect {
@@ -41,10 +42,32 @@ body {
   height: 50px;
   width: 80px;
   border-radius: 10px;
-  box-shadow: 1px 1px 1px 1px lightgray;
 }
 
 .flag {
   margin-right: 10px;
-  display: flexbox;
+}
+
+.inputCity {
+  margin-left: 20px;
+  border-radius: 10px;
+  height: 50px;
+  width: 420px;
+  font-size: 18px;
+  padding: 12px 20px;
+  border: 1px solid lightgray;
+}
+
+.imgDiv {
+  height: fit-content;
+}
+
+.selectDiv {
+  margin-left: 10px;
+  width: auto;
+  display: contents;
+}
+
+.cloudImg {
+  height: 50px;
 }
