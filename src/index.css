@@ -49,13 +49,12 @@ body {
 }
 
 .inputCity {
-  margin-left: 20px;
   border-radius: 10px;
-  height: 50px;
-  width: 420px;
+  height: 34px;
+  width: 330px;
   font-size: 18px;
   padding: 12px 20px;
-  border: 1px solid lightgray;
+  border: 1px solid lightgrey;
 }
 
 .imgDiv {
@@ -64,10 +63,43 @@ body {
 
 .selectDiv {
   margin-left: 10px;
-  width: auto;
   display: contents;
+  border: 0px;
+  padding: 16px 14px;
 }
 
 .cloudImg {
   height: 50px;
+}
+
+.inputCity::placeholder {
+  color: rgb(152, 152, 152);
+}
+
+.inputDiv {
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+  width: fit-content;
+  height: fit-content;
+  padding: 30px 10px;
+}
+
+.searchButton {
+  background: white;
+  border: 0;
+  right: 5px;
+  top: 5px;
+  width: fit-content;
+  height: fit-content;
+  margin: auto;
+  position: absolute;
+  right: 20px;
+  top: 40px;
+  cursor: pointer;
+}
+
+.search {
+  height: 40px;
+  width: 40px;
 }

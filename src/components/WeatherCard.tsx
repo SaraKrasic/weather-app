@@ -1,11 +1,12 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import { MenuItem, Select } from "@mui/material";
+import { FormControl, MenuItem, Select } from "@mui/material";
 import { getCountries } from "../services/LocationService";
 import { Country } from "../model/Country";
 
 const WeatherCard = () => {
   const [countries, setCountries] = useState<Country[]>([]);
+  const defaultCountry = "Netherlands";
 
   useEffect(() => {
     getCountries().then((data) => {
@@ -14,48 +15,51 @@ const WeatherCard = () => {
     });
   }, []);
 
+  // const defaultCountry = countries.find(
+  //   (country) => country.name.common === "Netherlands"
+  // );
+
   return (
-    <div className="container">
-      <div className="inputDiv">
-        <div className="inlineDiv">
-          <div className="imgDiv">
-            <img
-              className="cloudImg"
-              src={require(".././images/sun-cloud.png")}
-              alt="weather img"
-            ></img>
-          </div>
-          <div className="selectDiv">
-            <Select
-              className="countrieSelect"
-              defaultValue={countries.find((country) => {
-                return country.name.common === "Netherlands";
-              })}
-              label="Countrie"
-              //onChange={}
-            >
-              {countries.length > 0 ? (
-                <ul>
-                  {countries.map((country, index) => (
-                    <MenuItem key={index}>
-                      <div className="flag">{country.flag}</div>
-                      {country.name.common}
-                    </MenuItem>
-                  ))}
-                </ul>
-              ) : (
-                <MenuItem></MenuItem>
-              )}
-            </Select>
-            <input
-              className="inputCity"
-              type="text"
-              placeholder="Please enter your location..."
-            />
+    <FormControl fullWidth>
+      <div className="container">
+        <div className="inputDiv">
+          <div className="inlineDiv">
+            <div className="imgDiv">
+              <img
+                className="cloudImg"
+                src={require(".././images/sun-cloud.png")}
+                alt="weather img"
+              ></img>
+            </div>
+            <div className="selectDiv">
+              <Select defaultValue={defaultCountry}>
+                {countries.map((country, index) => (
+                  <MenuItem key={index} value={country.name.common}>
+                    {country.flag}
+                    {country.name.common}
+                  </MenuItem>
+                ))}
+              </Select>
+
+              <div className="inputDiv">
+                <input
+                  type="text"
+                  placeholder="Please enter your location..."
+                  className="inputCity"
+                />
+                <button type="submit" className="searchButton">
+                  <img
+                    src={require(".././images/search.png")}
+                    alt="search"
+                    className="search"
+                  />
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </FormControl>
   );
 };
 
