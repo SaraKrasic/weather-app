@@ -1,12 +1,13 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { FormControl, MenuItem, Select } from "@mui/material";
-import { getCountries } from "../services/LocationService";
+import { getCountries, getTemperatures } from "../services/LocationService";
 import { Country } from "../model/Country";
 
 const WeatherCard = () => {
   const [countries, setCountries] = useState<Country[]>([]);
   const defaultCountry = "Netherlands";
+  const [city, setCity] = useState<string>("");
 
   useEffect(() => {
     getCountries().then((data) => {
@@ -15,9 +16,12 @@ const WeatherCard = () => {
     });
   }, []);
 
-  // const defaultCountry = countries.find(
-  //   (country) => country.name.common === "Netherlands"
-  // );
+  let temperatures = async (event: any) => {
+    event.preventDefault();
+    let temperature = await getTemperatures(city);
+    console.log("TEMP" + temperature);
+    return temperature;
+  };
 
   return (
     <FormControl fullWidth>
@@ -32,7 +36,7 @@ const WeatherCard = () => {
               ></img>
             </div>
             <div className="selectDiv">
-              <Select defaultValue={defaultCountry}>
+              <Select defaultValue={defaultCountry} className="select">
                 {countries.map((country, index) => (
                   <MenuItem key={index} value={country.name.common}>
                     {country.flag}
@@ -40,21 +44,24 @@ const WeatherCard = () => {
                   </MenuItem>
                 ))}
               </Select>
-
-              <div className="inputDiv">
-                <input
-                  type="text"
-                  placeholder="Please enter your location..."
-                  className="inputCity"
-                />
-                <button type="submit" className="searchButton">
-                  <img
-                    src={require(".././images/search.png")}
-                    alt="search"
-                    className="search"
+              <form onSubmit={temperatures}>
+                <div className="inputDiv">
+                  <input
+                    value={city}
+                    onChange={(e) => setCity(e.target.value)}
+                    type="text"
+                    placeholder="Please enter your location..."
+                    className="inputCity"
                   />
-                </button>
-              </div>
+                  <button type="submit" className="searchButton">
+                    <img
+                      src={require(".././images/search.png")}
+                      alt="search"
+                      className="search"
+                    />
+                  </button>
+                </div>
+              </form>
             </div>
           </div>
         </div>

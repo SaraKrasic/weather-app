@@ -68,6 +68,10 @@ body {
   padding: 16px 14px;
 }
 
+.select {
+  border-radius: 10px;
+}
+
 .cloudImg {
   height: 50px;
 }
