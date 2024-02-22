@@ -107,3 +107,61 @@ body {
   height: 40px;
   width: 40px;
 }
+
+.temperature-date {
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #526983;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.curentTemp {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 100px;
+  font-weight: bold;
+  height: 160px;
+}
+
+.temperature::after {
+  bottom: 50px;
+  position: relative;
+  font-size: 30px;
+  margin-top: 0px;
+  content: "\2103";
+}
+
+.temperature-display {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  bottom: 50px;
+  position: relative;
+}
+
+.temp-days {
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 10%;
+  align-items: center;
+  justify-content: center;
+}
+
+.temperature-d {
+  margin-top: 50px;
+  justify-content: center;
+  align-items: center;
+  color: #526983;
+  font-size: 14px;
+  font-weight: bold;
+  margin-right: 30px;
+}

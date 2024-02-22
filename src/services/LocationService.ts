@@ -1,16 +1,6 @@
 import httpClient from "axios";
 import { Country } from "../model/Country";
-
-// export const updateCurrency = async (currency: CurrencyRequest) => {
-//   const { id, ...rest } = currency;
-//   const response = await httpClient<Response>({
-//     url: `${APIUrls.ADMIN_CURRENCIES}/${id}`,
-//     method: "PUT",
-//     data: rest,
-//   });
-
-//   return { status: response.status, data: response.data };
-// };
+import { Temperature } from "../model/Temperature";
 
 const COUNTRIES_API = "https://restcountries.com/v3.1/all";
 const TEMPERATURE_API = "http://api.weatherbit.io/v2.0/forecast/daily";
@@ -25,20 +15,22 @@ export const getCountries = async (): Promise<Country[]> => {
   return response.status === 200 ? response.data : [];
 };
 
-export const getTemperatures = async (city: string): Promise<[]> => {
-  console.log("Vidim city" + city);
-  const response = await httpClient<[]>({
+export const getTemperatures = async (city: string): Promise<Temperature> => {
+  const response = await httpClient<Temperature>({
     url:
       TEMPERATURE_API +
       "?key=" +
       TEMP_KEY +
       "&city=" +
       city +
-      "days=" +
+      "&days=" +
       TEMP_DAY,
   });
 
-  console.log(response);
+  const c: string =
+    TEMPERATURE_API + "?key=" + TEMP_KEY + "&city=" + city + "days=" + TEMP_DAY;
 
-  return response.status === 200 ? response.data : [];
+  console.log("URL " + c);
+
+  return response.status === 200 ? response.data : Object.apply({});
 };
