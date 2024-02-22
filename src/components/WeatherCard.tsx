@@ -111,27 +111,33 @@ const WeatherCard = () => {
           </div>
         </div>
       </FormControl>
-      <div className="temperature-date">
-        <p>{getCurrentDate()}</p>
-      </div>
-      <div className="curentTemp">
-        <p>
-          {temperatureData?.[0]?.app_max_temp}
-          <span className="temperature"></span>
-        </p>
-      </div>
-      <div className="temperature-display">
-        {temperatureData ? (
-          temperatureData.map((item) => (
-            <div>
-              <p className="temperature-d">{getDayName(item.datetime)}</p>
-              <p className="temp-days">{item.app_max_temp}°C</p>
-            </div>
-          ))
-        ) : (
-          <p>No temperature data available</p>
-        )}
-      </div>
+      {temperatureData && temperatureData.length > 0 ? (
+        <>
+          <div className="temperature-date">
+            <p>{getCurrentDate()}</p>
+          </div>
+          <div className="curentTemp">
+            <p>
+              {temperatureData?.[0]?.app_max_temp}
+              <span className="temperature"></span>
+            </p>
+          </div>
+          <div className="temperature-display">
+            {temperatureData ? (
+              temperatureData.map((item) => (
+                <div>
+                  <p className="temperature-d">{getDayName(item.datetime)}</p>
+                  <p className="temp-days">{item.app_max_temp}°C</p>
+                </div>
+              ))
+            ) : (
+              <p>No temperature data available</p>
+            )}
+          </div>
+        </>
+      ) : (
+        <p></p>
+      )}
     </>
   );
 };
