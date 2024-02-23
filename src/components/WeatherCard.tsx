@@ -14,6 +14,7 @@ const WeatherCard = () => {
 
   useEffect(() => {
     getCountries().then((data) => {
+      data.sort((a, b) => a.name.common.localeCompare(b.name.common));
       setCountries(data);
     });
   }, []);
