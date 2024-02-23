@@ -21,27 +21,25 @@ const WeatherCard = () => {
   let temperatures = async (event: any) => {
     event.preventDefault();
     let temperature: Temperature = await getTemperatures(city);
-    console.log("TEMP " + JSON.stringify(temperature.data));
     setTemperatures(temperature.data);
-
     return temperature.data;
   };
 
   function getCurrentDate(separator = "") {
     let currentDate = new Date();
     const monthNames = [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December",
+      "JANUARY",
+      "FEBRUARY",
+      "MARCH",
+      "APRIL",
+      "MAY",
+      "JUNE",
+      "JULY",
+      "AUGUST",
+      "SEPTEMBER",
+      "OCTOBER",
+      "NOVEMBER",
+      "DECEMBER",
     ];
     const currentMonthIndex = currentDate.getMonth();
     const currentMonthName = monthNames[currentMonthIndex];
@@ -53,13 +51,13 @@ const WeatherCard = () => {
 
   function getDayName(dateString: string) {
     const daysOfWeek = [
-      "Sunday",
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday",
+      "SUNDAY",
+      "MONDAY",
+      "TUESDAY",
+      "WEDNESDAY",
+      "THURSDAY",
+      "FRIDAY",
+      "SATURDAY",
     ];
     const date = new Date(dateString);
     const dayIndex = date.getDay();
@@ -127,7 +125,7 @@ const WeatherCard = () => {
               temperatureData.map((item) => (
                 <div>
                   <p className="temperature-d">{getDayName(item.datetime)}</p>
-                  <p className="temp-days">{item.app_max_temp}°C</p>
+                  <span className="temp-days">{item.app_max_temp}</span>
                 </div>
               ))
             ) : (
