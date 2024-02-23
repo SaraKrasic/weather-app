@@ -129,7 +129,7 @@ body {
 }
 
 .temperature::after {
-  bottom: 10%;
+  bottom: 50px;
   position: relative;
   font-size: 30px;
   margin-top: 0px;
