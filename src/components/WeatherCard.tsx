@@ -15,7 +15,6 @@ const WeatherCard = () => {
 
   useEffect(() => {
     getCountries().then((data) => {
-      console.log(data);
       data.sort((a, b) => a.name.common.localeCompare(b.name.common));
       setCountries(data);
     });
@@ -94,7 +93,6 @@ const WeatherCard = () => {
                 <Select
                   className="select"
                   defaultValue={defaultCountry}
-                  /*value={!country ? defaultCountry : country}*/
                   onChange={(e) => selectedCountryCode(e)}
                 >
                   {countries.map((country, index) => (
