@@ -8,12 +8,14 @@ import { Temperature, TemperatureData } from "../model/Temperature";
 const WeatherCard = () => {
   const days = 7;
   const [countries, setCountries] = useState<Country[]>([]);
+  const [countryCode, setCountryCode] = useState<string>("");
   const defaultCountry = "Netherlands";
   const [city, setCity] = useState<string>("");
   const [temperatureData, setTemperatures] = useState<TemperatureData[]>();
 
   useEffect(() => {
     getCountries().then((data) => {
+      console.log(data);
       data.sort((a, b) => a.name.common.localeCompare(b.name.common));
       setCountries(data);
     });
@@ -21,12 +23,22 @@ const WeatherCard = () => {
 
   let temperatures = async (event: any) => {
     event.preventDefault();
-    let temperature: Temperature = await getTemperatures(city);
+    console.log("DRZAVA code " + countryCode);
+    let temperature: Temperature = await getTemperatures(city, countryCode);
     setTemperatures(temperature.data);
     return temperature.data;
   };
 
-  function getCurrentDate(separator = "") {
+  let selectedCountryCode = function (event: any) {
+    event.preventDefault();
+    const countryName: string = event.target.value;
+    let selectedC = countries.find(
+      (country: Country) => country.name.common === countryName
+    );
+    setCountryCode(selectedC?.cca3);
+  };
+
+  function getCurrentDate() {
     let currentDate = new Date();
     const monthNames = [
       "JANUARY",
@@ -79,7 +91,12 @@ const WeatherCard = () => {
                 ></img>
               </div>
               <div className="selectDiv">
-                <Select defaultValue={defaultCountry} className="select">
+                <Select
+                  className="select"
+                  defaultValue={defaultCountry}
+                  /*value={!country ? defaultCountry : country}*/
+                  onChange={(e) => selectedCountryCode(e)}
+                >
                   {countries.map((country, index) => (
                     <MenuItem key={index} value={country.name.common}>
                       {country.flag}

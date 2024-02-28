@@ -3,4 +3,5 @@ export interface Country {
     common: string;
   };
   flag: any;
+  cca3: any;
 }

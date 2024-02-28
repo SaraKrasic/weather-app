@@ -15,11 +15,22 @@ export const getCountries = async (): Promise<Country[]> => {
   return response.status === 200 ? response.data : [];
 };
 
-export const getTemperatures = (city: string): Promise<Temperature> => {
+export const getTemperatures = (
+  city: string,
+  country: string
+): Promise<Temperature> => {
   if (city === "")
     alert("No parameters have been entered for city. Please enter city name.");
   return fetch(
-    TEMPERATURE_API + "?key=" + TEMP_KEY + "&city=" + city + "&days=" + TEMP_DAY
+    TEMPERATURE_API +
+      "?key=" +
+      TEMP_KEY +
+      "&city=" +
+      city +
+      "&days=" +
+      TEMP_DAY +
+      "&country=" +
+      country
   )
     .then((response: Response) => {
       if (!response.ok) {
