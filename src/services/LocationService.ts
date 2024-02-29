@@ -5,7 +5,7 @@ import { Temperature } from "../model/Temperature";
 const COUNTRIES_API = "https://restcountries.com/v3.1/all";
 const TEMPERATURE_API = "http://api.weatherbit.io/v2.0/forecast/daily";
 const TEMP_KEY = "f7a3cf414e0b40d997d0c7a771e2d006";
-const TEMP_DAY = 7;
+const TEMP_DAY = 10;
 
 export const getCountries = async (): Promise<Country[]> => {
   const response = await httpClient<Country[]>({
