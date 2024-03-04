@@ -4,6 +4,7 @@ import { FormControl, MenuItem, Select } from "@mui/material";
 import { getCountries, getTemperatures } from "../services/LocationService";
 import { Country } from "../model/Country";
 import { Temperature, TemperatureData } from "../model/Temperature";
+import { ClassNames } from "@emotion/react";
 
 const WeatherCard = () => {
   const days = 7;
@@ -102,24 +103,26 @@ const WeatherCard = () => {
                     </MenuItem>
                   ))}
                 </Select>
-                <form onSubmit={temperatures}>
-                  <div className="inputDiv">
-                    <input
-                      value={city}
-                      onChange={(e) => setCity(e.target.value)}
-                      type="text"
-                      placeholder="Please enter your location..."
-                      className="inputCity"
-                    />
-                    <button type="submit" className="searchButton">
-                      <img
-                        src={require(".././images/search.png")}
-                        alt="search"
-                        className="search"
+                <div className="inputDivSize">
+                  <form onSubmit={temperatures}>
+                    <div className="inputDiv">
+                      <input
+                        value={city}
+                        onChange={(e) => setCity(e.target.value)}
+                        type="text"
+                        placeholder="Please enter your location..."
+                        className="inputCity"
                       />
-                    </button>
-                  </div>
-                </form>
+                      <button type="submit" className="searchButton">
+                        <img
+                          src={require(".././images/search.png")}
+                          alt="search"
+                          className="search"
+                        />
+                      </button>
+                    </div>
+                  </form>
+                </div>
               </div>
             </div>
           </div>
@@ -138,7 +141,7 @@ const WeatherCard = () => {
           </div>
           <div className="temperature-display">
             {temperatureData ? (
-              temperatureData.slice(0, 7).map((item) => (
+              temperatureData.slice(0, days).map((item) => (
                 <div>
                   <p className="temperature-d">{getDayName(item.datetime)}</p>
                   <span className="temp-days">{item.app_max_temp}</span>
