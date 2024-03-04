@@ -236,8 +236,8 @@ body {
   }
   body,
   html {
-    height: 150vh; /* Set height to cover the entire viewport */
-    margin: 0; /* Remove default margin */
+    height: 150vh;
+    margin: 0;
     padding: 0;
   }
 }
