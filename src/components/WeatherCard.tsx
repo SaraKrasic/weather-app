@@ -141,8 +141,8 @@ const WeatherCard = () => {
           </div>
           <div className="temperature-display">
             {temperatureData ? (
-              temperatureData.slice(0, days).map((item) => (
-                <div>
+              temperatureData.slice(0, days).map((item, key) => (
+                <div key={key}>
                   <p className="temperature-d">{getDayName(item.datetime)}</p>
                   <span className="temp-days">{item.app_max_temp}</span>
                 </div>
