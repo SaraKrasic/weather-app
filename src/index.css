@@ -2,13 +2,18 @@
   --calculated-value: 0;
 }
 
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
 body {
   width: 100%;
-  height: 100%;
   line-height: 154%;
-  margin: 0;
-  background-image: linear-gradient(
-    90deg,
+  background: linear-gradient(
+    to bottom right,
     rgba(210, 237, 251, 1) 55%,
     rgba(var(--calculated-value)) 100%
   );
