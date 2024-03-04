@@ -234,4 +234,10 @@ body {
   .css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.MuiSelect-select {
     width: 145px;
   }
+  body,
+  html {
+    height: 150vh; /* Set height to cover the entire viewport */
+    margin: 0; /* Remove default margin */
+    padding: 0;
+  }
 }
