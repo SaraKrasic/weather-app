@@ -4,7 +4,6 @@ import { FormControl, MenuItem, Select } from "@mui/material";
 import { getCountries, getTemperatures } from "../services/LocationService";
 import { Country } from "../model/Country";
 import { Temperature, TemperatureData } from "../model/Temperature";
-import { ClassNames } from "@emotion/react";
 
 const WeatherCard = () => {
   const days = 7;
@@ -15,6 +14,7 @@ const WeatherCard = () => {
   const [temperatureData, setTemperatures] = useState<TemperatureData[]>();
 
   useEffect(() => {
+    adaptBackground([]);
     getCountries().then((data) => {
       data.sort((a, b) => a.name.common.localeCompare(b.name.common));
       setCountries(data);
@@ -23,9 +23,9 @@ const WeatherCard = () => {
 
   let temperatures = async (event: any) => {
     event.preventDefault();
-    console.log("DRZAVA code " + countryCode);
     let temperature: Temperature = await getTemperatures(city, countryCode);
     setTemperatures(temperature.data);
+    adaptBackground(temperature.data);
     return temperature.data;
   };
 
@@ -37,6 +37,20 @@ const WeatherCard = () => {
     );
     setCountryCode(selectedC?.cca3);
   };
+
+  function adaptBackground(temperature: TemperatureData[]) {
+    let averageTemp = averageTemperature(temperature);
+    let backgroundVar = document.body;
+    let averageTempC = averageTemp ? averageTemp : 0;
+
+    let tempColour = [
+      225 + averageTempC,
+      242 + averageTempC,
+      averageTempC > 0 ? 0 : 226 + averageTempC,
+      1,
+    ];
+    backgroundVar.style.setProperty("--calculated-value", `${tempColour}`);
+  }
 
   function getCurrentDate() {
     let currentDate = new Date();
@@ -61,6 +75,14 @@ const WeatherCard = () => {
 
     return `${currentMonthName} ${date} - ${date + days} ${year}`;
   }
+
+  let averageTemperature = (tepmetartureArr: TemperatureData[]) => {
+    let tempArray: number[] = [];
+    tepmetartureArr?.forEach((element) => tempArray.push(element.app_max_temp));
+    let sum = tempArray?.reduce((acc, curr) => acc + curr, 0);
+    let average = sum / tempArray.length;
+    return +average.toFixed(2);
+  };
 
   function getDayName(dateString: string) {
     const daysOfWeek = [
