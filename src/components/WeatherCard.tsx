@@ -103,26 +103,26 @@ const WeatherCard = () => {
                     </MenuItem>
                   ))}
                 </Select>
-                <div className="inputDivSize">
-                  <form onSubmit={temperatures}>
-                    <div className="inputDiv">
-                      <input
-                        value={city}
-                        onChange={(e) => setCity(e.target.value)}
-                        type="text"
-                        placeholder="Please enter your location..."
-                        className="inputCity"
+              </div>
+              <div className="inputDivSize">
+                <form onSubmit={temperatures}>
+                  <div className="inputDiv">
+                    <input
+                      value={city}
+                      onChange={(e) => setCity(e.target.value)}
+                      type="text"
+                      placeholder="Please enter your location..."
+                      className="inputCity"
+                    />
+                    <button type="submit" className="searchButton">
+                      <img
+                        src={require(".././images/search.png")}
+                        alt="search"
+                        className="search"
                       />
-                      <button type="submit" className="searchButton">
-                        <img
-                          src={require(".././images/search.png")}
-                          alt="search"
-                          className="search"
-                        />
-                      </button>
-                    </div>
-                  </form>
-                </div>
+                    </button>
+                  </div>
+                </form>
               </div>
             </div>
           </div>

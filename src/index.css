@@ -182,26 +182,47 @@ body {
     height: 130px;
   }
   .inputCity {
-    margin-top: 0px;
+    width: 255px;
+    font-size: 17px;
+    height: 25px;
+    margin-top: 0%;
+    padding: 12px 10px;
   }
   .selectDiv {
     display: block;
+    margin-top: 0px;
+    padding: 14px 0px;
   }
   .inputDivSize {
     display: flex;
     width: 100px;
     position: absolute;
-    margin-top: 0px;
-    height: 100px;
+    margin-top: 90px;
+    height: 30px;
   }
   input {
     display: block;
     margin-left: 0%;
+    position: absolute;
   }
   .temperature-display {
     display: grid;
   }
   .temp-days {
     margin-left: 0px;
+  }
+  .searchButton {
+    top: 37px;
+    right: 40px;
+  }
+  .search {
+    height: 35px;
+    width: 35px;
+  }
+  .imgDiv {
+    margin-left: 10px;
+  }
+  .css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.MuiSelect-select {
+    width: 145px;
   }
 }
