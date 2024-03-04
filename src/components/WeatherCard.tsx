@@ -42,11 +42,14 @@ const WeatherCard = () => {
     let averageTemp = averageTemperature(temperature);
     let backgroundVar = document.body;
     let averageTempC = averageTemp ? averageTemp : 0;
+    const defaultVar1 = 255;
+    const defaultVar2 = 242;
+    const defaultVar3 = 226;
 
     let tempColour = [
-      225 + averageTempC,
-      242 + averageTempC,
-      averageTempC > 0 ? 0 : 226 + averageTempC,
+      averageTempC ? averageTempC : defaultVar1,
+      averageTempC ? averageTempC : defaultVar2,
+      averageTempC > 0 ? defaultVar3 : 226 + averageTempC,
       1,
     ];
     backgroundVar.style.setProperty("--calculated-value", `${tempColour}`);
