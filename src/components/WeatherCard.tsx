@@ -207,12 +207,14 @@ const WeatherCard = () => {
                 </div>
               ))
             ) : (
-              <p>No temperature data available</p>
+              <p></p>
             )}
           </div>
         </>
       ) : (
-        <p></p>
+        <div className="showErr">
+          <p>No temperature data available</p>
+        </div>
       )}
     </>
   );
