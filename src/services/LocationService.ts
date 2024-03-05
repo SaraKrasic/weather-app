@@ -21,8 +21,10 @@ export const getTemperatures = (
   lat: number,
   lng: number
 ): Promise<Temperature> => {
-  if (city === "")
+  if (city === "") {
     alert("No parameters have been entered for city. Please enter city name.");
+    return Object.apply({});
+  }
   return fetch(
     TEMPERATURE_API +
       "?key=" +
