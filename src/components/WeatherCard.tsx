@@ -194,7 +194,7 @@ const WeatherCard = () => {
           </div>
           <div className="curentTemp">
             <p>
-              {temperatureData?.[0]?.app_max_temp}
+              {averageTemperature(temperatureData)}
               <span className="temperature"></span>
             </p>
           </div>
