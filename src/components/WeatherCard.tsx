@@ -74,7 +74,6 @@ const WeatherCard = () => {
       lng
     );
     setTemperatures(temperature.data);
-    adaptBackground();
     return temperature.data;
   };
 
