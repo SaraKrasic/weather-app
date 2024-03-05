@@ -42,17 +42,40 @@ const WeatherCard = () => {
     let averageTemp = averageTemperature(temperature);
     let backgroundVar = document.body;
     let averageTempC = averageTemp ? averageTemp : 0;
-    const defaultVar1 = 255;
-    const defaultVar2 = 242;
-    const defaultVar3 = 226;
+    const defaultVarCornerDown1 = 255;
+    const defaultVarCornerDown2 = 242;
+    const defaultVarCornerDown3 = 226;
+    const defaultVarCornerUp1 = 210;
+    const defaultVarCornerUp2 = 237;
+    const defaultVarCornerUp3 = 251;
+    const changeCornerUp1 = 150;
+    const changeCornerUp2 = 222;
+    const changeCornerUp3 = 209;
 
-    let tempColour = [
-      averageTempC ? defaultVar1 + averageTempC : defaultVar1,
-      averageTempC ? defaultVar2 + averageTempC : defaultVar2,
-      averageTempC > 0 ? 0 : defaultVar3,
+    let tempColourCornerDown = [
+      averageTempC
+        ? defaultVarCornerDown1 + averageTempC
+        : defaultVarCornerDown1,
+      averageTempC
+        ? defaultVarCornerDown2 + averageTempC
+        : defaultVarCornerDown2,
+      averageTempC > 0 ? averageTempC : defaultVarCornerDown3,
       1,
     ];
-    backgroundVar.style.setProperty("--calculated-value", `${tempColour}`);
+    let tempColourCornerUp = [
+      averageTempC ? changeCornerUp1 + averageTempC : defaultVarCornerUp1,
+      averageTempC ? changeCornerUp2 : defaultVarCornerUp2,
+      averageTempC ? changeCornerUp3 : defaultVarCornerUp3,
+      1,
+    ];
+    backgroundVar.style.setProperty(
+      "--value-corner-down",
+      `${tempColourCornerDown}`
+    );
+    backgroundVar.style.setProperty(
+      "--value-corner-up",
+      `${tempColourCornerUp}`
+    );
   }
 
   function getCurrentDate() {

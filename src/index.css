@@ -1,5 +1,6 @@
 :root {
-  --calculated-value: 0;
+  --value-corner-down: 0;
+  --value-corner-up: 0;
 }
 
 html,
@@ -14,8 +15,8 @@ body {
   line-height: 154%;
   background: linear-gradient(
     to bottom right,
-    rgba(210, 237, 251, 1) 55%,
-    rgba(var(--calculated-value)) 100%
+    rgba(var(--value-corner-up)) 55%,
+    rgba(var(--value-corner-down)) 100%
   );
   font-family: system-ui, sans-serif;
   font-size: 81.25%;
