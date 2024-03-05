@@ -10,7 +10,7 @@ export const getCountries = (): Promise<Country[]> => {
   return fetch(COUNTRIES_API)
     .then((response: Response) => response.json())
     .then((counties: Country[]) => counties)
-    .catch((error: Error) => []);
+    .catch(() => []);
 };
 
 export const getTemperatures = (
