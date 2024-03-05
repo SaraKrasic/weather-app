@@ -17,7 +17,7 @@ const WeatherCard = () => {
   const [city, setCity] = useState<string>("");
   const [temperatureData, setTemperatures] = useState<TemperatureData[]>([]);
 
-  const adaptBackground = useCallback(() => {
+  let adaptBackground = useCallback(() => {
     let averageTemp = averageTemperature(temperatureData);
     let backgroundVar = document.body;
     let averageTempC = averageTemp ? averageTemp : 0;
