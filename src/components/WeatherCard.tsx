@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { useEffect, useState } from "react";
 import { FormControl, MenuItem, Select } from "@mui/material";
 import { getCountries, getTemperatures } from "../services/LocationService";
@@ -15,42 +15,10 @@ const WeatherCard = () => {
   const [lng, setLng] = useState(lngDefault);
   const defaultCountry = "Netherlands";
   const [city, setCity] = useState<string>("");
-  const [temperatureData, setTemperatures] = useState<TemperatureData[]>();
+  const [temperatureData, setTemperatures] = useState<TemperatureData[]>([]);
 
-  useEffect(() => {
-    adaptBackground([]);
-    getCountries().then((data) => {
-      data.sort((a, b) => a.name.common.localeCompare(b.name.common));
-      setCountries(data);
-    });
-  }, []);
-
-  let temperatures = async (event: any) => {
-    event.preventDefault();
-    let temperature: Temperature = await getTemperatures(
-      city,
-      countryCode,
-      lat,
-      lng
-    );
-    setTemperatures(temperature.data);
-    adaptBackground(temperature.data);
-    return temperature.data;
-  };
-
-  let selectedCountryCode = function (event: any) {
-    event.preventDefault();
-    const countryName: string = event.target.value;
-    let selectedC = countries.find(
-      (country: Country) => country.name.common === countryName
-    );
-    setCountryCode(selectedC?.cca2);
-    setLat(selectedC?.latlng[0] || latDefoult);
-    setLng(selectedC?.latlng[1] || lngDefault);
-  };
-
-  function adaptBackground(temperature: TemperatureData[]) {
-    let averageTemp = averageTemperature(temperature);
+  const adaptBackground = useCallback(() => {
+    let averageTemp = averageTemperature(temperatureData);
     let backgroundVar = document.body;
     let averageTempC = averageTemp ? averageTemp : 0;
     const defaultVarCornerDown1 = 255;
@@ -87,7 +55,39 @@ const WeatherCard = () => {
       "--value-corner-up",
       `${tempColourCornerUp}`
     );
-  }
+  }, [temperatureData]);
+
+  useEffect(() => {
+    adaptBackground();
+    getCountries().then((data) => {
+      data.sort((a, b) => a.name.common.localeCompare(b.name.common));
+      setCountries(data);
+    });
+  }, [adaptBackground]);
+
+  let temperatures = async (event: any) => {
+    event.preventDefault();
+    let temperature: Temperature = await getTemperatures(
+      city,
+      countryCode,
+      lat,
+      lng
+    );
+    setTemperatures(temperature.data);
+    adaptBackground();
+    return temperature.data;
+  };
+
+  let selectedCountryCode = function (event: any) {
+    event.preventDefault();
+    const countryName: string = event.target.value;
+    let selectedC = countries.find(
+      (country: Country) => country.name.common === countryName
+    );
+    setCountryCode(selectedC?.cca2);
+    setLat(selectedC?.latlng[0] || latDefoult);
+    setLng(selectedC?.latlng[1] || lngDefault);
+  };
 
   function getCurrentDate() {
     let currentDate = new Date();
