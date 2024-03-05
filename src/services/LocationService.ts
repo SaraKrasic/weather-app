@@ -1,4 +1,3 @@
-import httpClient from "axios";
 import { Country } from "../model/Country";
 import { Temperature } from "../model/Temperature";
 
@@ -7,12 +6,11 @@ const TEMPERATURE_API = "http://api.weatherbit.io/v2.0/forecast/daily";
 const TEMP_KEY = "f7a3cf414e0b40d997d0c7a771e2d006";
 const TEMP_DAY = 10;
 
-export const getCountries = async (): Promise<Country[]> => {
-  const response = await httpClient<Country[]>({
-    url: COUNTRIES_API,
-  });
-
-  return response.status === 200 ? response.data : [];
+export const getCountries = (): Promise<Country[]> => {
+  return fetch(COUNTRIES_API)
+    .then((response: Response) => response.json())
+    .then((counties: Country[]) => counties)
+    .catch((error: Error) => []);
 };
 
 export const getTemperatures = (

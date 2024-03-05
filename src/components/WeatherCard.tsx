@@ -57,13 +57,20 @@ const WeatherCard = () => {
     );
   }, [temperatureData]);
 
-  useEffect(() => {
-    adaptBackground();
+  const countriesGet = () => {
     getCountries().then((data) => {
       data.sort((a, b) => a.name.common.localeCompare(b.name.common));
       setCountries(data);
     });
+  };
+
+  useEffect(() => {
+    adaptBackground();
   }, [adaptBackground]);
+
+  useEffect(() => {
+    countriesGet();
+  }, []);
 
   const temperatures = async (event: any) => {
     event.preventDefault();
