@@ -7,11 +7,11 @@ import { Temperature, TemperatureData } from "../model/Temperature";
 
 const WeatherCard = () => {
   const days = 7;
-  const latDefoult = 52.5;
+  const latDefault = 52.5;
   const lngDefault = 5.75;
   const [countries, setCountries] = useState<Country[]>([]);
   const [countryCode, setCountryCode] = useState<string>("NL");
-  const [lat, setLat] = useState(latDefoult);
+  const [lat, setLat] = useState(latDefault);
   const [lng, setLng] = useState(lngDefault);
   const defaultCountry = "Netherlands";
   const [city, setCity] = useState<string>("");
@@ -84,7 +84,7 @@ const WeatherCard = () => {
       (country: Country) => country.name.common === countryName
     );
     setCountryCode(selectedC?.cca2);
-    setLat(selectedC?.latlng[0] || latDefoult);
+    setLat(selectedC?.latlng[0] || latDefault);
     setLng(selectedC?.latlng[1] || lngDefault);
   };
 
