@@ -10,7 +10,7 @@ const WeatherCard = () => {
   const latDefoult = 52.5;
   const lngDefault = 5.75;
   const [countries, setCountries] = useState<Country[]>([]);
-  const [countryCode, setCountryCode] = useState<string>("");
+  const [countryCode, setCountryCode] = useState<string>("NL");
   const [lat, setLat] = useState(latDefoult);
   const [lng, setLng] = useState(lngDefault);
   const defaultCountry = "Netherlands";
