@@ -7,8 +7,12 @@ import { Temperature, TemperatureData } from "../model/Temperature";
 
 const WeatherCard = () => {
   const days = 7;
+  const latDefoult = 52.5;
+  const lngDefault = 5.75;
   const [countries, setCountries] = useState<Country[]>([]);
   const [countryCode, setCountryCode] = useState<string>("");
+  const [lat, setLat] = useState(latDefoult);
+  const [lng, setLng] = useState(lngDefault);
   const defaultCountry = "Netherlands";
   const [city, setCity] = useState<string>("");
   const [temperatureData, setTemperatures] = useState<TemperatureData[]>();
@@ -23,7 +27,12 @@ const WeatherCard = () => {
 
   let temperatures = async (event: any) => {
     event.preventDefault();
-    let temperature: Temperature = await getTemperatures(city, countryCode);
+    let temperature: Temperature = await getTemperatures(
+      city,
+      countryCode,
+      lat,
+      lng
+    );
     setTemperatures(temperature.data);
     adaptBackground(temperature.data);
     return temperature.data;
@@ -35,7 +44,9 @@ const WeatherCard = () => {
     let selectedC = countries.find(
       (country: Country) => country.name.common === countryName
     );
-    setCountryCode(selectedC?.cca3);
+    setCountryCode(selectedC?.cca2);
+    setLat(selectedC?.latlng[0] || latDefoult);
+    setLng(selectedC?.latlng[1] || lngDefault);
   };
 
   function adaptBackground(temperature: TemperatureData[]) {

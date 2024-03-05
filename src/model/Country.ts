@@ -3,5 +3,6 @@ export interface Country {
     common: string;
   };
   flag: any;
-  cca3: any;
+  cca2: any;
+  latlng: Array<number>;
 }
