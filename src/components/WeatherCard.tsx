@@ -17,7 +17,7 @@ const WeatherCard = () => {
   const [city, setCity] = useState<string>("");
   const [temperatureData, setTemperatures] = useState<TemperatureData[]>([]);
 
-  let adaptBackground = useCallback(() => {
+  const adaptBackground = useCallback(() => {
     let averageTemp = averageTemperature(temperatureData);
     let backgroundVar = document.body;
     let averageTempC = averageTemp ? averageTemp : 0;
@@ -65,7 +65,7 @@ const WeatherCard = () => {
     });
   }, [adaptBackground]);
 
-  let temperatures = async (event: any) => {
+  const temperatures = async (event: any) => {
     event.preventDefault();
     let temperature: Temperature = await getTemperatures(
       city,
@@ -77,7 +77,7 @@ const WeatherCard = () => {
     return temperature.data;
   };
 
-  let selectedCountryCode = function (event: any) {
+  const selectedCountryCode = function (event: any) {
     event.preventDefault();
     const countryName: string = event.target.value;
     let selectedC = countries.find(
@@ -112,7 +112,7 @@ const WeatherCard = () => {
     return `${currentMonthName} ${date} - ${date + days} ${year}`;
   }
 
-  let averageTemperature = (tepmetartureArr: TemperatureData[]) => {
+  const averageTemperature = (tepmetartureArr: TemperatureData[]) => {
     let tempArray: number[] = [];
     tepmetartureArr?.forEach((element) => tempArray.push(element.app_max_temp));
     let sum = tempArray?.reduce((acc, curr) => acc + curr, 0);
