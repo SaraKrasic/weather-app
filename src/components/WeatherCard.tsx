@@ -155,95 +155,97 @@ const WeatherCard = () => {
 
   return (
     <>
-      <div className="searchCountry">
-        <p className="searchCountryP">Search country name:</p>
-        <input
-          className="inputSearchC"
-          type="text"
-          value={searchTerm}
-          onChange={handleInputChange}
-          placeholder="Search..."
-        />
-      </div>
-      <FormControl fullWidth>
-        <div className="container">
-          <div className="inputDiv">
-            <div className="inlineDiv">
-              <div className="imgDiv">
-                <img
-                  className="cloudImg"
-                  src={require(".././images/sun-cloud.png")}
-                  alt="weather img"
-                ></img>
-              </div>
-              <div className="selectDiv">
-                <Select
-                  className="select"
-                  defaultValue={defaultCountry}
-                  value={selectedOption}
-                  onChange={(e) => selectedCountryCode(e)}
-                >
-                  {filteredOptions.map((country, index) => (
-                    <MenuItem key={index} value={country.name.common}>
-                      {country.flag}
-                      {country.name.common}
-                    </MenuItem>
-                  ))}
-                </Select>
-              </div>
-              <div className="inputDivSize">
-                <form onSubmit={temperatures}>
-                  <div className="inputDiv">
-                    <input
-                      value={city}
-                      onChange={(e) => setCity(e.target.value)}
-                      type="text"
-                      placeholder="Please enter your location..."
-                      className="inputCity"
-                    />
-                    <button type="submit" className="searchButton">
-                      <img
-                        src={require(".././images/search.png")}
-                        alt="search"
-                        className="search"
+      <div className="containerAll">
+        <div className="searchCountry">
+          <p className="searchCountryP">Search country name:</p>
+          <input
+            className="inputSearchC"
+            type="text"
+            value={searchTerm}
+            onChange={handleInputChange}
+            placeholder="Search..."
+          />
+        </div>
+        <FormControl fullWidth>
+          <div className="container">
+            <div className="inputDiv">
+              <div className="inlineDiv">
+                <div className="imgDiv">
+                  <img
+                    className="cloudImg"
+                    src={require(".././images/sun-cloud.png")}
+                    alt="weather img"
+                  ></img>
+                </div>
+                <div className="selectDiv">
+                  <Select
+                    className="select"
+                    defaultValue={defaultCountry}
+                    value={selectedOption}
+                    onChange={(e) => selectedCountryCode(e)}
+                  >
+                    {filteredOptions.map((country, index) => (
+                      <MenuItem key={index} value={country.name.common}>
+                        {country.flag}
+                        {country.name.common}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </div>
+                <div className="inputDivSize">
+                  <form onSubmit={temperatures}>
+                    <div className="inputDiv">
+                      <input
+                        value={city}
+                        onChange={(e) => setCity(e.target.value)}
+                        type="text"
+                        placeholder="Please enter your location..."
+                        className="inputCity"
                       />
-                    </button>
-                  </div>
-                </form>
+                      <button type="submit" className="searchButton">
+                        <img
+                          src={require(".././images/search.png")}
+                          alt="search"
+                          className="search"
+                        />
+                      </button>
+                    </div>
+                  </form>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </FormControl>
-      {temperatureData && temperatureData.length > 0 ? (
-        <>
-          <div className="temperature-date">
-            <p>{getCurrentDate()}</p>
+        </FormControl>
+        {temperatureData && temperatureData.length > 0 ? (
+          <>
+            <div className="temperature-date">
+              <p>{getCurrentDate()}</p>
+            </div>
+            <div className="curentTemp">
+              <p>
+                {averageTemperature(temperatureData)}
+                <span className="temperature"></span>
+              </p>
+            </div>
+            <div className="temperature-display">
+              {temperatureData ? (
+                temperatureData.slice(0, days).map((item, key) => (
+                  <div key={key}>
+                    <p className="temperature-d">{getDayName(item.datetime)}</p>
+                    <span className="temp-days">{item.app_max_temp}</span>
+                  </div>
+                ))
+              ) : (
+                <p></p>
+              )}
+            </div>
+          </>
+        ) : (
+          <div className="showErr">
+            <p>No temperature data</p>
           </div>
-          <div className="curentTemp">
-            <p>
-              {averageTemperature(temperatureData)}
-              <span className="temperature"></span>
-            </p>
-          </div>
-          <div className="temperature-display">
-            {temperatureData ? (
-              temperatureData.slice(0, days).map((item, key) => (
-                <div key={key}>
-                  <p className="temperature-d">{getDayName(item.datetime)}</p>
-                  <span className="temp-days">{item.app_max_temp}</span>
-                </div>
-              ))
-            ) : (
-              <p></p>
-            )}
-          </div>
-        </>
-      ) : (
-        <div className="showErr">
-          <p>No temperature data</p>
-        </div>
-      )}
+        )}
+      </div>
     </>
   );
 };

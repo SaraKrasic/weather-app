@@ -69,7 +69,6 @@ body {
 .searchCountry {
   height: 100%;
   width: 100%;
-  display: flex;
   align-items: center;
   justify-content: center;
   margin-top: 15%;
@@ -79,6 +78,10 @@ body {
   color: #526983;
   font-size: 18px;
   font-weight: bold;
+}
+
+.searchCountryP {
+  margin-left: 2%;
 }
 
 .inputSearchC {
@@ -223,15 +226,41 @@ body {
 }
 
 @media screen and (max-width: 600px) {
+  .container {
+    margin-top: 20%;
+  }
   .inputDiv {
     width: 300px;
     height: 130px;
   }
+  .containerAll {
+    justify-content: center;
+    align-items: center;
+  }
+
+  .searchCountry {
+    width: 255px;
+    font-size: 17px;
+    margin-top: 5%;
+    display: block;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .searchCountryP {
+    height: 25px;
+    margin-bottom: 0px;
+  }
+
+  .inputSearchC {
+    height: 25px;
+    /* margin-left: 10%;*/
+  }
+
   .inputCity {
     width: 255px;
     font-size: 17px;
     height: 25px;
-    margin-top: 0%;
     padding: 12px 10px;
   }
   .selectDiv {
