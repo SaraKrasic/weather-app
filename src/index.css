@@ -67,11 +67,9 @@ body {
 }
 
 .searchCountry {
-  height: 100%;
-  width: 100%;
   align-items: center;
   justify-content: center;
-  margin-top: 15%;
+  margin-top: 14%;
   border-radius: 25px;
   box-shadow: 2px 2x 2px 2px lightgray;
   display: grid;
