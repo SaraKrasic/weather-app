@@ -241,7 +241,7 @@ body {
   .searchCountry {
     width: 255px;
     font-size: 17px;
-    margin-top: 15%;
+    margin-top: 10%;
     height: 100%;
     width: 100%;
     display: flex;
@@ -250,7 +250,7 @@ body {
   }
 
   .searchCountryP {
-    margin-bottom: 25%;
+    margin-bottom: 35%;
     height: 25px;
   }
 
@@ -303,7 +303,7 @@ body {
   }
   body,
   html {
-    height: 190vh;
+    height: 210vh;
     margin: 0;
     padding: 0;
   }
