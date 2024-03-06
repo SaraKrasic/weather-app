@@ -227,7 +227,7 @@ body {
 
 @media screen and (max-width: 600px) {
   .container {
-    margin-top: 20%;
+    margin-top: 0%;
   }
   .inputDiv {
     width: 300px;
@@ -241,20 +241,21 @@ body {
   .searchCountry {
     width: 255px;
     font-size: 17px;
-    margin-top: 5%;
-    display: block;
-    justify-content: center;
+    margin-top: 15%;
+    height: 100%;
+    width: 100%;
+    display: flex;
     align-items: center;
+    justify-content: center;
   }
 
   .searchCountryP {
+    margin-bottom: 25%;
     height: 25px;
-    margin-bottom: 0px;
   }
 
   .inputSearchC {
     height: 25px;
-    /* margin-left: 10%;*/
   }
 
   .inputCity {
