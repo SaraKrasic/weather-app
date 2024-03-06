@@ -233,10 +233,6 @@ body {
     width: 300px;
     height: 130px;
   }
-  .containerAll {
-    justify-content: center;
-    align-items: center;
-  }
 
   .searchCountry {
     width: 255px;
