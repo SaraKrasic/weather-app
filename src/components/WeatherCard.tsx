@@ -16,6 +16,8 @@ const WeatherCard = () => {
   const defaultCountry = "Netherlands";
   const [city, setCity] = useState<string>("");
   const [temperatureData, setTemperatures] = useState<TemperatureData[]>([]);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedOption, setSelectedOption] = useState<string>(defaultCountry);
 
   const adaptBackground = useCallback(() => {
     let averageTemp = averageTemperature(temperatureData);
@@ -90,10 +92,19 @@ const WeatherCard = () => {
     let selectedC = countries.find(
       (country: Country) => country.name.common === countryName
     );
+    setSelectedOption(selectedC?.name.common || defaultCountry);
     setCountryCode(selectedC?.cca2);
     setLat(selectedC?.latlng[0] || latDefault);
     setLng(selectedC?.latlng[1] || lngDefault);
   };
+
+  const handleInputChange = (event: any) => {
+    setSearchTerm(event.target.value);
+  };
+
+  const filteredOptions = countries.filter((country) =>
+    country.name.common.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   function getCurrentDate() {
     let currentDate = new Date();
@@ -144,6 +155,16 @@ const WeatherCard = () => {
 
   return (
     <>
+      <div className="searchCountry">
+        <p className="searchCountryP">Search country name:</p>
+        <input
+          className="inputSearchC"
+          type="text"
+          value={searchTerm}
+          onChange={handleInputChange}
+          placeholder="Search..."
+        />
+      </div>
       <FormControl fullWidth>
         <div className="container">
           <div className="inputDiv">
@@ -159,9 +180,10 @@ const WeatherCard = () => {
                 <Select
                   className="select"
                   defaultValue={defaultCountry}
+                  value={selectedOption}
                   onChange={(e) => selectedCountryCode(e)}
                 >
-                  {countries.map((country, index) => (
+                  {filteredOptions.map((country, index) => (
                     <MenuItem key={index} value={country.name.common}>
                       {country.flag}
                       {country.name.common}

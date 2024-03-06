@@ -27,7 +27,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 20%;
+  margin-top: 2%;
 }
 
 .inputDiv {
@@ -53,6 +53,7 @@ body {
   width: 80px;
   border-radius: 10px;
 }
+
 .showErr {
   height: 100%;
   width: 100%;
@@ -63,6 +64,30 @@ body {
   color: #526983;
   font-size: 20px;
   font-weight: bold;
+}
+
+.searchCountry {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 15%;
+  border-radius: 25px;
+  box-shadow: 2px 2x 2px 2px lightgray;
+  display: grid;
+  color: #526983;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.inputSearchC {
+  border-radius: 10px;
+  height: 35px;
+  width: 250px;
+  padding: 12px 20px;
+  border: 1px solid lightgrey;
+  font-size: 18px;
 }
 
 .flag {
