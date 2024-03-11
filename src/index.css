@@ -235,7 +235,7 @@ body {
   .searchCountry {
     width: 255px;
     font-size: 17px;
-    margin-top: 10%;
+    padding-top: 10%;
     height: 150px;
     width: 100%;
     display: flex;
