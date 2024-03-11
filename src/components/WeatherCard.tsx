@@ -162,7 +162,7 @@ const WeatherCard = () => {
           type="text"
           value={searchTerm}
           onChange={handleInputChange}
-          placeholder="Search..."
+          placeholder="Search country..."
         />
       </div>
       <FormControl fullWidth>
