@@ -288,6 +288,7 @@ body {
   .search {
     height: 35px;
     width: 35px;
+    padding-top: 4.6px;
   }
   .imgDiv {
     margin-left: 10px;
