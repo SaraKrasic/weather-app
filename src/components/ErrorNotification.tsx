@@ -12,10 +12,11 @@ const ErrorNotification = () => {
       setVisible(true);
       const timer = setTimeout(() => {
         setVisible(false);
+        errorCtx.setError(null);
       }, duration);
       return () => clearTimeout(timer);
     }
-  }, [errorCtx.error, duration, errorCtx]);
+  }, [errorCtx]);
 
   const handleCloseErrorDialog = () => {
     setVisible(false);
