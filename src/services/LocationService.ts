@@ -20,7 +20,6 @@ export const getTemperatures = (
   lng: number
 ): Promise<Temperature> => {
   if (city === "") {
-    alert("No parameters have been entered for city. Please enter city name.");
     return Object.apply({});
   }
   return fetch(
@@ -49,6 +48,5 @@ export const getTemperatures = (
     })
     .catch((error: Error) => {
       throw new Error("Failed to fetch temperature data");
-      //  return Object.apply({});
     });
 };
