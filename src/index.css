@@ -223,6 +223,26 @@ body {
   position: relative;
 }
 
+.errorDialog {
+  width: 70px;
+}
+
+.error-dialog {
+  position: fixed;
+  top: 10%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 0, 0, 0.8);
+  color: white;
+  padding: 20px;
+  border-radius: 8px;
+  z-index: 9999;
+  width: 350px;
+  height: 120px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
 @media screen and (max-width: 600px) {
   .container {
     margin-top: 0%;

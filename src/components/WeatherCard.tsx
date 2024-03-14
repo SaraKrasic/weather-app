@@ -1,9 +1,10 @@
 import React, { useCallback } from "react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { FormControl, MenuItem, Select } from "@mui/material";
 import { getCountries, getTemperatures } from "../services/LocationService";
 import { Country } from "../model/Country";
 import { Temperature, TemperatureData } from "../model/Temperature";
+import { NameContext } from "../App";
 
 const WeatherCard = () => {
   const days = 7;
@@ -18,6 +19,7 @@ const WeatherCard = () => {
   const [temperatureData, setTemperatures] = useState<TemperatureData[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedOption, setSelectedOption] = useState<string>(defaultCountry);
+  const errorCtx = useContext(NameContext);
 
   const adaptBackground = useCallback(() => {
     let averageTemp = averageTemperature(temperatureData);
@@ -76,14 +78,16 @@ const WeatherCard = () => {
 
   const temperatures = async (event: any) => {
     event.preventDefault();
-    let temperature: Temperature = await getTemperatures(
-      city,
-      countryCode,
-      lat,
-      lng
-    );
-    setTemperatures(temperature.data);
-    return temperature.data;
+    getTemperatures(city, countryCode, lat, lng)
+      .then((temperature: Temperature) => {
+        setTemperatures(temperature.data);
+        return temperature.data;
+      })
+      .catch((error: Error) => {
+        errorCtx.setError(error.message);
+        console.log(error.message);
+        return Object.apply({});
+      });
   };
 
   const selectedCountryCode = function (event: any) {
