@@ -1,6 +1,6 @@
 import React, { useCallback } from "react";
 import { useEffect, useState, useContext } from "react";
-import { FormControl, MenuItem, Select } from "@mui/material";
+import { Autocomplete, Box, FormControl, TextField } from "@mui/material";
 import { getCountries, getTemperatures } from "../services/LocationService";
 import { Country } from "../model/Country";
 import { Temperature, TemperatureData } from "../model/Temperature";
@@ -14,11 +14,8 @@ const WeatherCard = () => {
   const [countryCode, setCountryCode] = useState<string>("NL");
   const [lat, setLat] = useState(latDefault);
   const [lng, setLng] = useState(lngDefault);
-  const defaultCountry = "Netherlands";
   const [city, setCity] = useState<string>("");
   const [temperatureData, setTemperatures] = useState<TemperatureData[]>([]);
-  const [searchTerm, setSearchTerm] = useState("");
-  const [selectedOption, setSelectedOption] = useState<string>(defaultCountry);
   const errorCtx = useContext(NameContext);
 
   const adaptBackground = useCallback(() => {
@@ -96,19 +93,10 @@ const WeatherCard = () => {
     let selectedC = countries.find(
       (country: Country) => country.name.common === countryName
     );
-    setSelectedOption(selectedC?.name.common || defaultCountry);
     setCountryCode(selectedC?.cca2);
     setLat(selectedC?.latlng[0] || latDefault);
     setLng(selectedC?.latlng[1] || lngDefault);
   };
-
-  const handleInputChange = (event: any) => {
-    setSearchTerm(event.target.value);
-  };
-
-  const filteredOptions = countries.filter((country) =>
-    country.name.common.toLowerCase().includes(searchTerm.toLowerCase())
-  );
 
   function getCurrentDate() {
     let currentDate = new Date();
@@ -134,7 +122,7 @@ const WeatherCard = () => {
     return `${currentMonthName} ${date} - ${date + days} ${year}`;
   }
 
-  const averageTemperature = (tepmetartureArr: TemperatureData[]) => {
+  const averageTemperature = (tepmetartureArr: TemperatureData[]): number => {
     let tempArray: number[] = [];
     tepmetartureArr?.forEach((element) => tempArray.push(element.app_max_temp));
     let sum = tempArray?.reduce((acc, curr) => acc + curr, 0);
@@ -159,16 +147,6 @@ const WeatherCard = () => {
 
   return (
     <>
-      <div className="searchCountry">
-        <p className="searchCountryP">Search country name:</p>
-        <input
-          className="inputSearchC"
-          type="text"
-          value={searchTerm}
-          onChange={handleInputChange}
-          placeholder="Search countries..."
-        />
-      </div>
       <FormControl fullWidth>
         <div className="container">
           <div className="inputDiv">
@@ -181,19 +159,34 @@ const WeatherCard = () => {
                 ></img>
               </div>
               <div className="selectDiv">
-                <Select
+                <Autocomplete
                   className="select"
-                  defaultValue={defaultCountry}
-                  value={selectedOption}
+                  sx={{ width: 150 }}
+                  options={countries}
+                  autoSelect={true}
+                  getOptionLabel={(option) => option.name.common}
                   onChange={(e) => selectedCountryCode(e)}
-                >
-                  {filteredOptions.map((country, index) => (
-                    <MenuItem key={index} value={country.name.common}>
-                      {country.flag}
-                      {country.name.common}
-                    </MenuItem>
-                  ))}
-                </Select>
+                  renderOption={(props, option) => (
+                    <Box
+                      component="li"
+                      sx={{ "& > img": { mr: 2, flexShrink: 0 } }}
+                      {...props}
+                    >
+                      {option.flag}
+                      {option.name.common}
+                    </Box>
+                  )}
+                  renderInput={(params) => (
+                    <TextField
+                      {...params}
+                      label="Choose a country"
+                      inputProps={{
+                        ...params.inputProps,
+                        autoComplete: "new-password",
+                      }}
+                    />
+                  )}
+                />
               </div>
               <div className="inputDivSize">
                 <form onSubmit={temperatures}>

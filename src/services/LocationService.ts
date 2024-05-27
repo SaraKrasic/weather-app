@@ -3,7 +3,7 @@ import { Temperature } from "../model/Temperature";
 
 const COUNTRIES_API = "https://restcountries.com/v3.1/all";
 const TEMPERATURE_API = "http://api.weatherbit.io/v2.0/forecast/daily";
-const TEMP_KEY = "d2563ae6c28f4a22817cb926a9137e39";
+const TEMP_KEY = "811fb7331a994a82846c82330518e08f";
 const TEMP_DAY = 10;
 
 export const getCountries = (): Promise<Country[]> => {

@@ -27,7 +27,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 2%;
+  margin-top: 20%;
 }
 
 .inputDiv {
@@ -64,31 +64,6 @@ body {
   color: #526983;
   font-size: 20px;
   font-weight: bold;
-}
-
-.searchCountry {
-  align-items: center;
-  justify-content: center;
-  padding-top: 14%;
-  border-radius: 25px;
-  box-shadow: 2px 2x 2px 2px lightgray;
-  display: grid;
-  color: #526983;
-  font-size: 18px;
-  font-weight: bold;
-}
-
-.searchCountryP {
-  margin-left: 2%;
-}
-
-.inputSearchC {
-  border-radius: 10px;
-  height: 35px;
-  width: 250px;
-  padding: 12px 20px;
-  border: 1px solid lightgrey;
-  font-size: 18px;
 }
 
 .flag {
@@ -245,31 +220,11 @@ body {
 
 @media screen and (max-width: 600px) {
   .container {
-    margin-top: 0%;
+    margin-top: 10%;
   }
   .inputDiv {
     width: 300px;
     height: 130px;
-  }
-
-  .searchCountry {
-    width: 255px;
-    font-size: 17px;
-    padding-top: 10%;
-    height: 150px;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .searchCountryP {
-    margin-bottom: 35%;
-    height: 25px;
-  }
-
-  .inputSearchC {
-    height: 25px;
   }
 
   .inputCity {
