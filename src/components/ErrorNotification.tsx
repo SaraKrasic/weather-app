@@ -4,17 +4,11 @@ import { NameContext } from "../App";
 
 const ErrorNotification = () => {
   const errorCtx = useContext(NameContext);
-  const duration = 2000;
   const [visible, setVisible] = useState(true);
 
   useEffect(() => {
     if (errorCtx.error) {
       setVisible(true);
-      const timer = setTimeout(() => {
-        setVisible(false);
-        errorCtx.setError(null);
-      }, duration);
-      return () => clearTimeout(timer);
     }
   }, [errorCtx]);
 
@@ -26,6 +20,9 @@ const ErrorNotification = () => {
   const ErrorDialog: React.FC<ErrorDialogProps> = ({ message }) => {
     return (
       <div className="error-dialog">
+        <button className="close" onClick={handleCloseErrorDialog}>
+          x
+        </button>
         <div className="error-content">
           <p>{message}</p>
         </div>
