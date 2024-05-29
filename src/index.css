@@ -218,9 +218,6 @@ body {
   font-weight: bold;
 }
 
-.close {
-}
-
 @media screen and (max-width: 600px) {
   .container {
     margin-top: 10%;
